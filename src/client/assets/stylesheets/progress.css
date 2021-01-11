@@ -1,0 +1,51 @@
+/* PROGRESS PAGE SPECIFIC STYLES */
+
+/* -------------------  MOBILE  --------------------- */
+header {
+  background-image: url(../images/racing.jpg);
+}
+
+main#two-columns {
+    margin: 50px 0;
+    display: flex;
+}
+
+main#two-columns section {
+    max-width: 50vw;
+}
+
+section#accelerate button {
+    height: 200px;
+    width: 200px;
+    margin: 30px auto;
+    border-radius: 180%;
+    background-color: #ff2800;
+    border-color: #ff2800;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+section#accelerate button:hover {
+    background-color: yellow;
+    border-color: yellow;
+    color: black;
+}
+
+
+section#accelerate button:focus {
+    background-color: green;
+    border-color: green;
+    color: white;
+} 
+
+#big-numbers {
+    font-weight: bolder;
+    font-size: 70px;
+}
+
+@media only screen and (max-width: 500px) {
+    main#two-columns {
+        display: block;
+    }
+}
