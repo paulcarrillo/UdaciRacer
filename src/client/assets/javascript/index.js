@@ -1,7 +1,7 @@
 // PROVIDED CODE BELOW (LINES 1 - 80) DO NOT REMOVE
 
 // The store will hold all information needed globally
-var store = {
+let store = {
 	track_id: undefined,
 	player_id: undefined,
 	race_id: undefined,
@@ -33,15 +33,22 @@ async function onPageLoad() {
 
 function setupClickHandlers() {
 	document.addEventListener('click', function(event) {
-		const { target } = event
+		let { target } = event
 		// Race track form field
-		if (target.matches('.card.track')) {
+		if (target.matches('.card.track') || target.parentNode.matches('.card.track')) {
+			if (target.parentNode.matches('.card.track')) { 
+				target = target.parentNode;
+			}
 			handleSelectTrack(target)
 		}
-		// Podracer form field
-		if (target.matches('.card.podracer')) {
+	  	// Podracer form field
+		if (target.matches('.card.podracer') || target.parentNode.matches('.card.podracer')) {
+			if (target.parentNode.matches('.card.podracer')) { 
+				target = target.parentNode;
+			}
 			handleSelectPodRacer(target)
 		}
+				
 		// Submit create race form
 		if (target.matches('#submit-create-race')) {
 			event.preventDefault()	
@@ -136,11 +143,15 @@ async function runCountdown() {
 				if (timer !== 0) {
 					// run this DOM manipulation to decrement the countdown for the user
 					console.log(timer);
+					// disable gas until count down has completed
+					document.getElementById('gas-peddle').disabled = true;
 					document.getElementById('big-numbers').innerHTML = --timer
 				} else {
 					// when countdown is done, clear the interval, resolve the promise, and return
 					clearInterval(interval);
 					resolve();
+					// enable gas after count down timer has completed
+					document.getElementById('gas-peddle').disabled = false;
 				}
 			}, 1000);			
 		})
